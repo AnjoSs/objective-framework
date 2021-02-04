@@ -3,7 +3,12 @@
     <v-card-title>
       Your Objectives
       <v-spacer />
-      <create-formula-form :data-objects="dataObjects" :tasks="tasks" />
+      <create-formula-form
+        :data-objects="dataObjects"
+        :tasks="tasks"
+        :id="askCTLformulas.length"
+        @created="(newFormula) => onAdded(newFormula)"
+      />
     </v-card-title>
     <v-card-text>
       <v-row>
@@ -41,14 +46,19 @@ export default {
     },
   },
   setup() {
+    const askCTLformulas = ref([]);
+
+    const onAdded = (newFormula) => {
+      askCTLformulas.value.push(copy(newFormula));
+    };
     return {
-      askCTLformulas: ref([
-        { name: "Formula 1", formula: "Example CTL Formula " },
-        { name: "Formula 2", formula: "Example CTL Formula " },
-        { name: "Formula 3", formula: "Example CTL Formula " },
-        { name: "Formula 4", formula: "Example CTL Formula " },
-      ]),
+      askCTLformulas,
+      onAdded,
     };
   },
 };
+
+function copy(object) {
+  return JSON.parse(JSON.stringify(object));
+}
 </script>

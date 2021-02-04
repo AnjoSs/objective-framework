@@ -13,11 +13,12 @@
       </v-card-title>
       <v-card-text>
         <div>
-          <v-text-field label="Name" clearable />
+          <v-text-field v-model="newFormula.name" label="Name" clearable />
         </div>
         <div>
           <h4 class="py-2">Choose the desired Data Object States:</h4>
           <v-select
+            v-model="selectedDataObjectStates"
             label="Data Object States"
             outlined
             multiple
@@ -29,6 +30,7 @@
         <div>
           <h4 class="py-2">Choose Tasks that should be enabled:</h4>
           <v-select
+            v-model="selectedTasks"
             label="Tasks"
             outlined
             multiple
@@ -40,10 +42,10 @@
         <v-divider class="py-2" />
         <h3 class="py-2">The resulting ASK-CTL formula:</h3>
         <v-textarea
+          v-model="newFormula.formula"
           outlined
           :name="`new_formula`"
           :label="newFormula.name"
-          :value="newFormula.formula"
         ></v-textarea>
       </v-card-text>
       <v-card-actions>
@@ -55,7 +57,7 @@
           color="blue-grey"
           class="white--text"
           min-width="200"
-          @click="showDialog = false"
+          @click="onSave"
         >
           Save
         </v-btn>
@@ -68,6 +70,10 @@ import { ref, toRefs, watch } from "@vue/composition-api";
 export default {
   name: "CreateFormulaForm",
   props: {
+    id: {
+      type: Number,
+      default: 0,
+    },
     dataObjects: {
       type: Array,
       required: true,
@@ -77,8 +83,19 @@ export default {
       required: true,
     },
   },
-  setup(props) {
-    const { dataObjects, tasks } = toRefs(props);
+  setup(props, context) {
+    const { dataObjects, tasks, id } = toRefs(props);
+
+    const showDialog = ref(false);
+
+    const getIinitialValues = () => {
+      return {
+        name: `Objective ${id.value + 1}`,
+        formula: `The Resulting Formula. It's computation still needs to be implemented`,
+      };
+    };
+
+    const newFormula = ref(getIinitialValues());
 
     const dataObjectStateInputs = ref([]);
 
@@ -110,15 +127,42 @@ export default {
       { deep: true }
     );
 
+    const onSave = () => {
+      context.emit("created", newFormula.value);
+      showDialog.value = false;
+      newFormula.value = getIinitialValues();
+    };
+
+    const selectedDataObjectStates = ref([]);
+
+    const selectedTasks = ref([]);
+
+    watch([selectedDataObjectStates, selectedTasks], () => {
+      newFormula.value.formula = compileAskCTLFormula(
+        selectedDataObjectStates.value,
+        selectedTasks.value
+      );
+    });
+
     return {
-      showDialog: ref(false),
+      showDialog,
       dataObjectStateInputs,
       taskInputs,
-      newFormula: ref({
-        name: "",
-        formula: `The Resulting Formula. It's computation still needs to be implemented`,
-      }),
+      selectedDataObjectStates,
+      selectedTasks,
+      onSave,
+      newFormula,
     };
   },
 };
+
+function compileAskCTLFormula(dataObjectStates, tasks) {
+  let formula = "";
+  // TODO: Implement the actual compiling here
+  dataObjectStates.forEach((doState) => {
+    formula += doState;
+  });
+  tasks.forEach((task) => (formula += task));
+  return formula;
+}
 </script>
