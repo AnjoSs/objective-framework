@@ -67,6 +67,7 @@
 </template>
 <script>
 import { ref, toRefs, watch } from "@vue/composition-api";
+import { compileAskCTLFormula } from "../compiler/compiler";
 export default {
   name: "CreateFormulaForm",
   props: {
@@ -155,14 +156,4 @@ export default {
     };
   },
 };
-
-function compileAskCTLFormula(dataObjectStates, tasks) {
-  let formula = "";
-  // TODO: Implement the actual compiling here
-  dataObjectStates.forEach((doState) => {
-    formula += doState;
-  });
-  tasks.forEach((task) => (formula += task));
-  return formula;
-}
 </script>
