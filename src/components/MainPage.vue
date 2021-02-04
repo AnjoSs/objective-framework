@@ -1,31 +1,73 @@
 <template>
   <div>
-    <v-card class="ma-4">
-    <v-card-title>Model-Input</v-card-title>
-    <v-card-text>
-      <v-row>
-        <v-col>
-          <v-file-input accept="*.bpmn" label="fCM-Input"/>
-        </v-col>
-        <v-col>
-          <v-file-input accept="*.uml" label="UML-Input"/>
-        </v-col>
-      </v-row>
-    </v-card-text>
-  </v-card>
-  <formula-card/>
+    <file-input-card v-if="useFileInput" />
+    <manual-input-card
+      v-else
+      :data-objects="dataObjects"
+      :tasks="tasks"
+      @addTask="addTask"
+      @addState="(doIdx) => addState(doIdx)"
+      @addDataObject="addDataObject"
+      @dataObjectChanged="(doIdx, newVars) => dataObjectChanged(doIdx, newVars)"
+      @taskChanged="(tIdx, newVars) => taskChanged(tIdx, newVars)"
+    />
+    <formula-card :data-objects="dataObjects" :tasks="tasks" />
   </div>
 </template>
 <script>
-import { defineComponent } from '@vue/composition-api';
-import FormulaCard from './FormulaCard.vue'
+import FormulaCard from "./FormulaCard.vue";
+import FileInputCard from "./FileInputCard.vue";
+import ManualInputCard from "./ManualInputCard.vue";
+import { ref } from "@vue/composition-api";
 
-export default defineComponent( {
-  name: 'HelloWorld',
-  components: {FormulaCard},
+export default {
+  components: { FormulaCard, FileInputCard, ManualInputCard },
   setup() {
-    return {
+    const dataObjects = ref([]);
+    function addDataObject() {
+      dataObjects.value.push({
+        id: dataObjects.value.length,
+        name: `Data Object ${dataObjects.value.length + 1}`,
+        states: [{ id: 0, name: "State 1" }],
+      });
     }
-  }
-})
+    function addState(doIdx) {
+      const dataObject = dataObjects.value[doIdx];
+      const newStateId = dataObject.states.length + 1;
+      dataObject.states.push({
+        id: newStateId,
+        name: `State ${newStateId}`,
+      });
+    }
+
+    const tasks = ref([]);
+    function addTask() {
+      tasks.value.push({
+        id: tasks.value.length,
+        name: `Task ${tasks.value.length + 1}`,
+      });
+    }
+
+    function onDataObjectChanged(doIdx, newVars) {
+      console.log("DO changed");
+      dataObjects.value[doIdx] = newVars;
+    }
+
+    function onTaskChanged(tIdx, newVars) {
+      console.log("Task changed");
+      tasks.value[tIdx] = newVars;
+    }
+
+    return {
+      useFileInput: ref(false),
+      dataObjects,
+      addDataObject,
+      addState,
+      tasks,
+      addTask,
+      onDataObjectChanged,
+      onTaskChanged,
+    };
+  },
+};
 </script>
