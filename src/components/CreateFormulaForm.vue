@@ -1,9 +1,7 @@
 <template>
   <v-dialog v-model="showDialog" width="800" persistent>
     <template v-slot:activator="{ on, attrs }">
-      <v-btn color="blue-grey" v-bind="attrs" v-on="on" class="white--text">
-        Create new
-      </v-btn>
+      <v-btn color="blue-grey" v-bind="attrs" v-on="on" class="white--text">Create new</v-btn>
     </template>
     <v-card>
       <v-card-title>
@@ -22,10 +20,14 @@
             label="Data Object States"
             outlined
             multiple
-            chips
             clearable
             :items="dataObjectStateInputs"
-          />
+          >
+            <template slot="selection" slot-scope="data">
+              <v-chip>{{ data.item.name }} [{{ data.item.state }}]</v-chip>
+            </template>
+            <template slot="item" slot-scope="data">{{ data.item.name }} [{{ data.item.state}}]</template>
+          </v-select>
         </div>
         <div>
           <h4 class="py-2">Choose Tasks that should be enabled:</h4>
@@ -49,18 +51,9 @@
         ></v-textarea>
       </v-card-text>
       <v-card-actions>
-        <v-btn text @click="showDialog = false">
-          Abort
-        </v-btn>
+        <v-btn text @click="showDialog = false">Abort</v-btn>
         <v-spacer></v-spacer>
-        <v-btn
-          color="blue-grey"
-          class="white--text"
-          min-width="200"
-          @click="onSave"
-        >
-          Save
-        </v-btn>
+        <v-btn color="blue-grey" class="white--text" min-width="200" @click="onSave">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -73,16 +66,16 @@ export default {
   props: {
     id: {
       type: Number,
-      default: 0,
+      default: 0
     },
     dataObjects: {
       type: Array,
-      required: true,
+      required: true
     },
     tasks: {
       type: Array,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(props, context) {
     const { dataObjects, tasks, id } = toRefs(props);
@@ -92,7 +85,7 @@ export default {
     const getIinitialValues = () => {
       return {
         name: `Objective ${id.value + 1}`,
-        formula: `The Resulting Formula. It's computation still needs to be implemented`,
+        formula: `-`
       };
     };
 
@@ -104,11 +97,12 @@ export default {
       dataObjects,
       () => {
         dataObjectStateInputs.value = [];
-        dataObjects.value.forEach((dataObject) => {
-          dataObject.states.forEach((state) => {
-            dataObjectStateInputs.value.push(
-              `${dataObject.name} [${state.name}]`
-            );
+        dataObjects.value.forEach(dataObject => {
+          dataObject.states.forEach(state => {
+            dataObjectStateInputs.value.push({
+              name: dataObject.name,
+              state: state.name
+            });
           });
         });
       },
@@ -121,7 +115,7 @@ export default {
       tasks,
       () => {
         taskInputs.value = [];
-        tasks.value.forEach((task) => {
+        tasks.value.forEach(task => {
           taskInputs.value.push(task.name);
         });
       },
@@ -140,6 +134,7 @@ export default {
 
     watch([selectedDataObjectStates, selectedTasks], () => {
       newFormula.value.formula = compileAskCTLFormula(
+        newFormula.value.name,
         selectedDataObjectStates.value,
         selectedTasks.value
       );
@@ -152,8 +147,8 @@ export default {
       selectedDataObjectStates,
       selectedTasks,
       onSave,
-      newFormula,
+      newFormula
     };
-  },
+  }
 };
 </script>
