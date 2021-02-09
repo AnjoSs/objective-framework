@@ -15,9 +15,9 @@
   </div>
 </template>
 <script>
-import FormulaCard from "./FormulaCard.vue";
-import FileInputCard from "./FileInputCard.vue";
-import ManualInputCard from "./ManualInputCard.vue";
+import FormulaCard from "./formulas/FormulaCard.vue";
+import FileInputCard from "./input/FileInputCard.vue";
+import ManualInputCard from "./input/ManualInputCard.vue";
 import { ref } from "@vue/composition-api";
 
 export default {
@@ -28,7 +28,7 @@ export default {
       dataObjects.value.push({
         id: dataObjects.value.length,
         name: `Data Object ${dataObjects.value.length + 1}`,
-        states: [{ id: 0, name: "State 1" }],
+        states: [{ id: 0, name: "State 1" }]
       });
     }
     function addState(doIdx) {
@@ -36,7 +36,7 @@ export default {
       const newStateId = dataObject.states.length + 1;
       dataObject.states.push({
         id: newStateId,
-        name: `State ${newStateId}`,
+        name: `State ${newStateId}`
       });
     }
 
@@ -44,7 +44,7 @@ export default {
     function addTask() {
       tasks.value.push({
         id: tasks.value.length,
-        name: `Task ${tasks.value.length + 1}`,
+        name: `Task ${tasks.value.length + 1}`
       });
     }
 
@@ -66,8 +66,8 @@ export default {
       tasks,
       addTask,
       onDataObjectChanged,
-      onTaskChanged,
+      onTaskChanged
     };
-  },
+  }
 };
 </script>

@@ -26,7 +26,10 @@
             <template slot="selection" slot-scope="data">
               <v-chip>{{ data.item.name }} [{{ data.item.state }}]</v-chip>
             </template>
-            <template slot="item" slot-scope="data">{{ data.item.name }} [{{ data.item.state}}]</template>
+            <template slot="item" slot-scope="data">
+              <v-checkbox :value="selectedDataObjectStates.includes(data.item)" />
+              {{ data.item.name }} [{{ data.item.state}}]
+            </template>
           </v-select>
         </div>
         <div>
@@ -60,7 +63,7 @@
 </template>
 <script>
 import { ref, toRefs, watch } from "@vue/composition-api";
-import { compileAskCTLFormula } from "../compiler/compiler";
+import { compileAskCTLFormula } from "../../compiler/compiler";
 export default {
   name: "CreateFormulaForm",
   props: {

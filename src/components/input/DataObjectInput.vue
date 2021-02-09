@@ -8,11 +8,11 @@
       <div v-for="(state, stateIdx) in variables.states" :key="stateIdx">
         <v-text-field v-model="state.name" />
       </div>
-      <div>
+      <v-card-actions class="justify-center">
         <v-btn icon color="blue-grey" @click="addState">
           <v-icon>add_box</v-icon>
         </v-btn>
-      </div>
+      </v-card-actions>
     </v-card-text>
   </v-card>
 </template>
@@ -21,7 +21,7 @@ import { ref, toRefs, watch } from "@vue/composition-api";
 export default {
   props: {
     dataObject: Object,
-    default: {},
+    default: {}
   },
   setup(props, context) {
     const { dataObject } = toRefs(props);
@@ -36,8 +36,8 @@ export default {
 
     return {
       variables,
-      addState,
+      addState
     };
-  },
+  }
 };
 </script>
