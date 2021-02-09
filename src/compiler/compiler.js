@@ -10,28 +10,30 @@ export function compileAskCTLFormula(name, dataObjectStates, tasks) {
     const dataObjectFunctions = getDataObjectFunctions(dataObjectStates, mainPage)
     const taskFunctions = getTaskFunctions(tasks, mainPage)
 
-    let evaluateStateFunction = `fun evaluateState n = `
+    let evaluateStateFunction = `fun evaluateState n = (`
 
     let idx = 0
     dataObjectFunctions.forEach(dataObjectFunction => {
         if (idx !== 0) evaluateStateFunction += ' andalso '
         idx += 1
-        evaluateStateFunction += `${replaceWhiteSpace(dataObjectFunction.name)}`
+        evaluateStateFunction += `${replaceWhiteSpace(dataObjectFunction.name)}(n)`
         formula += `${dataObjectFunction.formula}\n`
     })
 
     taskFunctions.forEach(taskFunction => {
         if (idx !== 0) evaluateStateFunction += ' andalso '
         idx += 1
-        evaluateStateFunction += `${replaceWhiteSpace(taskFunction.name)}`
+        evaluateStateFunction += `${replaceWhiteSpace(taskFunction.name)}(n)`
         formula += `${taskFunction.formula}\n`
     })
 
-    const objective = `Objective = POS(NF("${replaceWhiteSpace(name)}", evaluateState))`
+    evaluateStateFunction += ');'
 
-    const evaluate = 'eval_node Objective <current state>'
+    const objective = `val Objective = POS(NF("${replaceWhiteSpace(name)}", evaluateState));`
 
-    formula += evaluateStateFunction + ';' + `\n` + objective + `\n` + evaluate
+    const evaluate = 'eval_node Objective <current state>;'
+
+    formula += evaluateStateFunction + `\n` + objective + `\n` + evaluate
     return formula;
 }
 
@@ -40,9 +42,9 @@ function getDataObjectFunctions(dataObjectStates, mainPage) {
     dataObjectStates.forEach(dataObjectState => {
         const name = `${replaceWhiteSpace(dataObjectState.name)}Has${replaceWhiteSpace(dataObjectState.state)}`
         const formula = `fun ${name} n =
-            (if length(Mark.${mainPage}'${replaceWhiteSpace(dataObjectState.name)}) <> 0
+            (if length(Mark.${mainPage}'${replaceWhiteSpace(dataObjectState.name)} 1 n) <> 0
             then
-            (List.exists(fn do => #state(do) = ${replaceWhiteSpace(dataObjectState.state)}) (Mark.${mainPage}'${replaceWhiteSpace(dataObjectState.name)}))
+            (List.exists(fn d => #state(d) = ${replaceWhiteSpace(dataObjectState.state)}) (Mark.${mainPage}'${replaceWhiteSpace(dataObjectState.name)} 1 n))
             else
             false);\n`
         functions.push({
