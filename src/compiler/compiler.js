@@ -38,7 +38,7 @@ function getDataObjectFunctions(dataObjectStates, mainPage) {
     dataObjectStates.forEach(dataObjectState => {
         const name = `${dataObjectState.name}Has${dataObjectState.state}`
         const formula = `fun ${name} n =
-            (if length (Mark.${mainPage}'${dataObjectState.name.trim()}) <> 0
+            (if length(Mark.${mainPage}'${dataObjectState.name.trim()}) <> 0
             then
             (List.exists(fn do => #state(do) = ${dataObjectState.state.trim()}) (Mark.${mainPage}'${dataObjectState.name.trim()}))
             else
@@ -55,7 +55,12 @@ function getTaskFunctions(tasks) {
     let functions = []
     tasks.forEach(task => {
         const name = `is${task}Enabled`
-        const formula = `fun ${name} n = TIsDead([TI.${task.trim()}'${task.trim()} 1], n);\n`
+        const formula = `fun ${name} n =
+            (if length(OutArcs(n)) <> 0
+            then
+            (List.exists(fn arc => ArcToTI(arc) = (TI.${task.trim()}'${task.trim()} 1)) (OutArcs(n)))
+            else
+            false);\n`
         functions.push({
             name,
             formula
