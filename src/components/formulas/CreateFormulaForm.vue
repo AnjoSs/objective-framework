@@ -9,42 +9,51 @@
         <v-spacer />
         <v-icon size="24" @click="showDialog = false">close</v-icon>
       </v-card-title>
-      <v-card-text>
+      <v-card-text class="pb-0">
         <div>
           <v-text-field v-model="newFormula.name" label="Name" clearable />
         </div>
-        <div>
-          <h4 class="py-2">Choose the desired Data Object States:</h4>
-          <v-select
-            v-model="selectedDataObjectStates"
-            label="Data Object States"
-            outlined
-            multiple
-            clearable
-            :items="dataObjectStateInputs"
-          >
-            <template slot="selection" slot-scope="data">
-              <v-chip>{{ data.item.name }} [{{ data.item.state }}]</v-chip>
-            </template>
-            <template slot="item" slot-scope="data">
-              <v-checkbox :value="selectedDataObjectStates.includes(data.item)" />
-              {{ data.item.name }} [{{ data.item.state}}]
-            </template>
-          </v-select>
-        </div>
-        <div>
-          <h4 class="py-2">Choose Tasks that should be enabled:</h4>
-          <v-select
-            v-model="selectedTasks"
-            label="Tasks"
-            outlined
-            multiple
-            chips
-            clearable
-            :items="taskInputs"
-          />
-        </div>
-        <v-divider class="py-2" />
+        <v-card flat outlined="grey">
+          <div class="pa-4 pb-0 d-flex">
+            <h3>State 1</h3>
+            <v-spacer />
+            <v-icon>delete</v-icon>
+          </div>
+          <v-card-text class="pb-0 pt-2">
+            <div>
+              <h4 class="py-2">Choose the desired Data Object States:</h4>
+              <v-select
+                v-model="selectedDataObjectStates"
+                label="Data Object States"
+                outlined
+                multiple
+                clearable
+                :items="dataObjectStateInputs"
+              >
+                <template slot="selection" slot-scope="data">
+                  <v-chip>{{ data.item.name }} [{{ data.item.state }}]</v-chip>
+                </template>
+                <template slot="item" slot-scope="data">
+                  <v-checkbox :value="selectedDataObjectStates.includes(data.item)" />
+                  {{ data.item.name }} [{{ data.item.state}}]
+                </template>
+              </v-select>
+            </div>
+            <div>
+              <h4 class="py-2">Choose Tasks that should be enabled:</h4>
+              <v-select
+                v-model="selectedTasks"
+                label="Tasks"
+                outlined
+                multiple
+                chips
+                clearable
+                :items="taskInputs"
+              />
+            </div>
+          </v-card-text>
+        </v-card>
+        <v-divider class="mt-4" color="grey" />
         <h3 class="py-2">The resulting ASK-CTL formula:</h3>
         <v-textarea
           v-model="newFormula.formula"

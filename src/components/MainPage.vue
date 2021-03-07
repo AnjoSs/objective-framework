@@ -11,6 +11,7 @@
       @dataObjectChanged="(doIdx, newVars) => dataObjectChanged(doIdx, newVars)"
       @taskChanged="(tIdx, newVars) => taskChanged(tIdx, newVars)"
     />
+    <v-divider class="mx-4 my-2" color="grey" />
     <formula-card :data-objects="dataObjects" :tasks="tasks" />
   </div>
 </template>

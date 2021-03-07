@@ -6,9 +6,9 @@
     <v-card-text>
       <h3>States</h3>
       <div v-for="(state, stateIdx) in variables.states" :key="stateIdx">
-        <v-text-field v-model="state.name" />
+        <v-text-field class="pa-0 ma-0" v-model="state.name" />
       </div>
-      <v-card-actions class="justify-center">
+      <v-card-actions class="justify-center pa-0">
         <v-btn icon color="blue-grey" @click="addState">
           <v-icon>add_box</v-icon>
         </v-btn>

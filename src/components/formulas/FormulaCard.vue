@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-4">
+  <v-card flat>
     <v-card-title>
       Your Objectives
       <v-spacer />
@@ -12,12 +12,7 @@
     </v-card-title>
     <v-card-text>
       <v-row>
-        <v-col
-          v-for="(formula, fIdx) in askCTLformulas"
-          :key="fIdx"
-          flat
-          cols="4"
-        >
+        <v-col v-for="(formula, fIdx) in askCTLformulas" :key="fIdx" flat cols="4">
           <v-textarea
             outlined
             :name="`formula_${fIdx}`"
@@ -38,24 +33,24 @@ export default {
   props: {
     dataObjects: {
       type: Array,
-      required: true,
+      required: true
     },
     tasks: {
       type: Array,
-      required: true,
-    },
+      required: true
+    }
   },
   setup() {
     const askCTLformulas = ref([]);
 
-    const onAdded = (newFormula) => {
+    const onAdded = newFormula => {
       askCTLformulas.value.push(copy(newFormula));
     };
     return {
       askCTLformulas,
-      onAdded,
+      onAdded
     };
-  },
+  }
 };
 
 function copy(object) {
