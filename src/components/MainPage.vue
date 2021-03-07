@@ -50,17 +50,18 @@ export default {
     }
 
     function onDataObjectChanged(doIdx, newVars) {
-      console.log("DO changed");
       dataObjects.value[doIdx] = newVars;
     }
 
     function onTaskChanged(tIdx, newVars) {
-      console.log("Task changed");
       tasks.value[tIdx] = newVars;
     }
 
+    // For now this feature is disabled. In the future it should be possible to upload files for the fragments and for the DO classes.
+    const useFileInput = ref(false);
+
     return {
-      useFileInput: ref(false),
+      useFileInput,
       dataObjects,
       addDataObject,
       addState,

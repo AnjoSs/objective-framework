@@ -18,25 +18,6 @@
               (newVars) => $emit('dataObjectChanged', doIdx, newVars)
             "
         />
-        <!-- <v-card
-          class="ma-4"
-          height="250"
-          width="200"
-          flat
-          align="center"
-          color="grey lighten-4"
-          @click="$emit('addDataObject')"
-        >
-          <v-container fill-height fluid>
-            <v-row>
-              <v-col>
-                <v-btn icon color="blue-grey">
-                  <v-icon>add_box</v-icon>
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>-->
       </div>
     </v-card-text>
     <div class="d-flex px-4 pt-2">

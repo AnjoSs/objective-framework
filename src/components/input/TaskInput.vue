@@ -17,7 +17,6 @@ export default {
     const variables = ref(task.value);
 
     watch(variables, () => {
-      console.log("TaskInput");
       context.emit("variablesChanged", variables);
     });
 
