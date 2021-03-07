@@ -1,6 +1,12 @@
 <template>
   <v-card flat>
-    <v-card-title>Data Object Input</v-card-title>
+    <div class="d-flex px-4 pt-2">
+      <v-card-title class="pa-0">Data Object Input</v-card-title>
+      <v-spacer></v-spacer>
+      <v-btn class="pa-4" icon size="30" color="blue-grey" @click="$emit('addDataObject')">
+        <v-icon>add_box</v-icon>
+      </v-btn>
+    </div>
     <v-card-text class="pa-0">
       <div class="d-flex">
         <data-object-input
@@ -12,7 +18,7 @@
               (newVars) => $emit('dataObjectChanged', doIdx, newVars)
             "
         />
-        <v-card
+        <!-- <v-card
           class="ma-4"
           height="250"
           width="200"
@@ -30,10 +36,16 @@
               </v-col>
             </v-row>
           </v-container>
-        </v-card>
+        </v-card>-->
       </div>
     </v-card-text>
-    <v-card-title>Task Input</v-card-title>
+    <div class="d-flex px-4 pt-2">
+      <v-card-title class="pa-0">Task Input</v-card-title>
+      <v-spacer></v-spacer>
+      <v-btn class="pa-4" icon size="30" color="blue-grey" @click="$emit('addTask')">
+        <v-icon>add_box</v-icon>
+      </v-btn>
+    </div>
     <v-card-text class="pa-0">
       <div class="d-flex">
         <task-input
@@ -44,25 +56,6 @@
               (newVars) => $emit('taskChanged', tIdx, newVars)
             "
         />
-        <v-card
-          class="ma-4"
-          height="120"
-          width="200"
-          flat
-          color="grey lighten-4"
-          align="center"
-          @click="$emit('addTask')"
-        >
-          <v-container fill-height fluid>
-            <v-row>
-              <v-col>
-                <v-btn icon color="blue-grey">
-                  <v-icon>add_box</v-icon>
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
       </div>
     </v-card-text>
   </v-card>

@@ -13,7 +13,7 @@
         <div>
           <v-text-field v-model="newFormula.name" label="Name" clearable />
         </div>
-        <v-card flat outlined="grey">
+        <v-card flat outlined>
           <div class="pa-4 pb-0 d-flex">
             <h3>State 1</h3>
             <v-spacer />

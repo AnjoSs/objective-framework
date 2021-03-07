@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-4" outlined height="120" width="200">
+  <v-card class="ma-4 mr-0" outlined height="120" width="200">
     <v-card-title>
       <v-text-field v-model="variables.name" label="Task Name" />
     </v-card-title>
@@ -10,7 +10,7 @@ import { ref, toRefs, watch } from "@vue/composition-api";
 export default {
   props: {
     task: Object,
-    default: {},
+    default: {}
   },
   setup(props, context) {
     const { task } = toRefs(props);
@@ -22,8 +22,8 @@ export default {
     });
 
     return {
-      variables,
+      variables
     };
-  },
+  }
 };
 </script>
