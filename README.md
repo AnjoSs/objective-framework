@@ -41,6 +41,7 @@ To create a new Objective, click `Create New`.
 
 An Objective can consist of desired Data Object states and enabled Tasks.
 
-For the desired input, the state space query is automatically compiled. It can be copied and used for the analysis in CPN Tools.
+For the desired input, the state space query is automatically compiled. It can be copied and used for the analysis in [CPN Tools](http://cpntools.org).
+
 The state space query is an ASK-CTL formula. More information can be found [here](http://cpntools.org/wp-content/uploads/2018/01/askctlmanual.pdf).
  
