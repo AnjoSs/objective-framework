@@ -33,4 +33,14 @@ npm run serve
 The application should then be available at `http://localhost:8080`.
 
 ## Usage
-...
+To use the Objective Framework, run the project. 
+
+It is now possible to insert Data Objects with thier states, and Tasks.
+
+To create a new Objective, click `Create New`.
+
+An Objective can consist of desired Data Object states and enabled Tasks.
+
+For the desired input, the state space query is automatically compiled. It can be copied and used for the analysis in CPN Tools.
+The state space query is an ASK-CTL formula. More information can be found [here](http://cpntools.org/wp-content/uploads/2018/01/askctlmanual.pdf).
+ 
