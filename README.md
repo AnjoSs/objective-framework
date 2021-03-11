@@ -76,8 +76,8 @@ To execute the query from the current state on, choose the 'Sim to State Space' 
 
 The query returns a boolean indicating whether or not an execution state can be reached that satisfies the objective. For all possible successor states, it can be investigated which can lead to a satisfying state and which can't.
 
-<img width="100" alt="image" src="https://user-images.githubusercontent.com/32839252/110791660-bfc25a00-8272-11eb-97ff-29239c890b1e.png">
+<img width="956" alt="image" src="https://user-images.githubusercontent.com/32839252/110791802-ec767180-8272-11eb-8426-01f5af7d431b.png">
 
 To inverstigate the state space and the successor states of the current state, the state space can be visualized by using the state space tool.
 
-<img width="956" alt="image" src="https://user-images.githubusercontent.com/32839252/110791802-ec767180-8272-11eb-8426-01f5af7d431b.png">
+<img width="100" alt="image" src="https://user-images.githubusercontent.com/32839252/110791660-bfc25a00-8272-11eb-97ff-29239c890b1e.png">
