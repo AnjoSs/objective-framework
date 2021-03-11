@@ -34,15 +34,15 @@ The application should then be available at `http://localhost:8080`.
 
 ## Usage
 In the following, let us consider the following examplary fragments of an fCM:
-<img width="688" alt="image" src="https://user-images.githubusercontent.com/32839252/110783487-cfd53c00-8268-11eb-828c-aa73ab66f773.png">
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/32839252/110783487-cfd53c00-8268-11eb-828c-aa73ab66f773.png">
 
 To use the Objective Framework, run the project. 
 
 It is now possible to insert Data Objects with thier states, and Tasks.
-<img width="564" alt="image" src="https://user-images.githubusercontent.com/32839252/110783735-19be2200-8269-11eb-93f6-9e9a36c62d8e.png">
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/32839252/110783735-19be2200-8269-11eb-93f6-9e9a36c62d8e.png">
 
 To create a new Objective, click `Create New`.
-<img width="730" alt="image" src="https://user-images.githubusercontent.com/32839252/110783684-0dd26000-8269-11eb-82b0-5605d1d5c389.png">
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/32839252/110791450-85f15380-8272-11eb-9473-1e473c4248de.png">
 
 An Objective can consist of desired Data Object states and enabled Tasks.
 
@@ -50,16 +50,24 @@ For the desired input, the state space query is automatically compiled. It can b
 The CPN-representation of the example can be found in `example/conference.cpn`.
 
 The state space query is an ASK-CTL formula. More information can be found [here](http://cpntools.org/wp-content/uploads/2018/01/askctlmanual.pdf).
+<img width="1017" alt="image" src="https://user-images.githubusercontent.com/32839252/110791925-13cd3e80-8273-11eb-88ca-bd31b6987e25.png">
 
 To execute it, first the models state space must be generated. To do so, select the generate state space option in the state space tool and click into the net. Due to the size of the state space, this might take several minutes.
+<img width="171" alt="image" src="https://user-images.githubusercontent.com/32839252/110791549-a4574f00-8272-11eb-85d3-052434bb50f3.png">
 
 Also, the strongly connected components graph has to be computed. Choose the option in the state space tool and click into the net.
+<img width="172" alt="image" src="https://user-images.githubusercontent.com/32839252/110791587-ade0b700-8272-11eb-9e28-e3cd15c1f053.png">
 
 Next, the the ASK-CTL compiler must be loaded. Choose the ML compiler in the simulation tool and compile the expression `use (ogpath^"ASKCTL/ASKCTLloader.sml")` by clicking on it.
+<img width="379" alt="image" src="https://user-images.githubusercontent.com/32839252/110791704-cf41a300-8272-11eb-9fa5-9099d3dd19d7.png">
 
 Now, any ASK-CTL formula can be executed by choosing the ML compiler and clicking on it. To execute the state space query, copy it into a separate text field in the net. In the examplary CPN, the previously created state space query is already given.
 
 To execute the query from the current state on, choose the 'Sim to State Space' option of the state space tool. The current state node is displayed. Insert it into the state space query and execute it.
+<img width="188" alt="image" src="https://user-images.githubusercontent.com/32839252/110791678-c6e96800-8272-11eb-8b86-919a5d1286d0.png">
 
-The query returns a boolean indicating whether or not an execution state can be reached that satisfies the objective. For all possible successor states, it can be investigated which can lead to a satisfying state and which can't. To inverstigate the state space and the successor states of the current state, the state space can be visualized by using the state space tool.
- 
+The query returns a boolean indicating whether or not an execution state can be reached that satisfies the objective. For all possible successor states, it can be investigated which can lead to a satisfying state and which can't.
+<img width="169" alt="image" src="https://user-images.githubusercontent.com/32839252/110791660-bfc25a00-8272-11eb-97ff-29239c890b1e.png">
+
+To inverstigate the state space and the successor states of the current state, the state space can be visualized by using the state space tool.
+<img width="956" alt="image" src="https://user-images.githubusercontent.com/32839252/110791802-ec767180-8272-11eb-8426-01f5af7d431b.png">
