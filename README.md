@@ -33,15 +33,33 @@ npm run serve
 The application should then be available at `http://localhost:8080`.
 
 ## Usage
+In the following, let us consider the following examplary fragments of an fCM:
+<img width="688" alt="image" src="https://user-images.githubusercontent.com/32839252/110783487-cfd53c00-8268-11eb-828c-aa73ab66f773.png">
+
 To use the Objective Framework, run the project. 
 
 It is now possible to insert Data Objects with thier states, and Tasks.
+<img width="564" alt="image" src="https://user-images.githubusercontent.com/32839252/110783735-19be2200-8269-11eb-93f6-9e9a36c62d8e.png">
 
 To create a new Objective, click `Create New`.
+<img width="730" alt="image" src="https://user-images.githubusercontent.com/32839252/110783684-0dd26000-8269-11eb-82b0-5605d1d5c389.png">
 
 An Objective can consist of desired Data Object states and enabled Tasks.
 
 For the desired input, the state space query is automatically compiled. It can be copied and used for the analysis in [CPN Tools](http://cpntools.org).
+The CPN-representation of the example can be found in `example/conference.cpn`.
 
 The state space query is an ASK-CTL formula. More information can be found [here](http://cpntools.org/wp-content/uploads/2018/01/askctlmanual.pdf).
+
+To execute it, first the models state space must be generated. To do so, select the generate state space option in the state space tool and click into the net. Due to the size of the state space, this might take several minutes.
+
+Also, the strongly connected components graph has to be computed. Choose the option in the state space tool and click into the net.
+
+Next, the the ASK-CTL compiler must be loaded. Choose the ML compiler in the simulation tool and compile the expression `use (ogpath^"ASKCTL/ASKCTLloader.sml")` by clicking on it.
+
+Now, any ASK-CTL formula can be executed by choosing the ML compiler and clicking on it. To execute the state space query, copy it into a separate text field in the net. In the examplary CPN, the previously created state space query is already given.
+
+To execute the query from the current state on, choose the 'Sim to State Space' option of the state space tool. The current state node is displayed. Insert it into the state space query and execute it.
+
+The query returns a boolean indicating whether or not an execution state can be reached that satisfies the objective. For all possible successor states, it can be investigated which can lead to a satisfying state and which can't. To inverstigate the state space and the successor states of the current state, the state space can be visualized by using the state space tool.
  
