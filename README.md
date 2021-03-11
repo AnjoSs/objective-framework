@@ -37,7 +37,7 @@ In the following, let us consider the following examplary fragments of an fCM:
 
 <img width="400" alt="image" src="https://user-images.githubusercontent.com/32839252/110783487-cfd53c00-8268-11eb-828c-aa73ab66f773.png">
 
-To use the Objective Framework, run the project. 
+To use the Objective Framework, run the project.
 
 It is now possible to insert Data Objects with thier states, and Tasks.
 
@@ -47,7 +47,7 @@ To create a new Objective, click `Create New`.
 
 <img width="400" alt="image" src="https://user-images.githubusercontent.com/32839252/110791450-85f15380-8272-11eb-9473-1e473c4248de.png">
 
-An Objective can consist of desired Data Object states and enabled Tasks.
+An Objective regards one execution state and can consist of desired Data Object states and enabled Tasks. The semantic for Data Objects and desired states is that for a chosen state at least one Data Object with that state should exist. All options connected with the logic AND.
 
 For the desired input, the state space query is automatically compiled. It can be copied and used for the analysis in [CPN Tools](http://cpntools.org).
 The CPN-representation of the example can be found in `example/conference.cpn`.
