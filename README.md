@@ -4,18 +4,18 @@ During the execution of fragment-based Case Models (fMC), the Knowledge Worker (
 
 The Objective Framework allows the KW to formally define state space queries on a high-level abstraction. It provides an interface to compose Objectives according to Data Objects, their states and Tasks of the fCM. The Objective is then compiled into a state space query. More information can be found in the paper 'Late Goal Modelling for Fragment-Based Case Management'.
 
-The Objective Framework relies on the formal representations of fCMs as Colored Petri nets (CPN). The compiled state space queries can be applied to the CPN representation of fCMs provided by the [fcm2cpn](https://github.com/bptlab/fcm2cpn/tree/master) compiler. In the future, the state space queries will be automatically executable with the [fcm-Engine](https://github.com/bptlab/fCM-Engine).
+The Objective Framework relies on the formal representation of fCMs as Colored Petri nets (CPN). The compiled state space queries can be applied to the CPN representation of fCMs provided by the [fcm2cpn](https://github.com/bptlab/fcm2cpn/tree/master) compiler. In the future, the state space queries will be automatically executable with the [fcm-Engine](https://github.com/bptlab/fCM-Engine).
 
 <img width="350" alt="image" src="https://user-images.githubusercontent.com/32839252/110480380-b99f7280-80e6-11eb-88bf-f66eeda032e8.png">
 
-The state space queries can be analyzed with [CPN Tools](http://cpntools.org).
+For now, the state space queries can be manually analyzed with [CPN Tools](http://cpntools.org).
 
 ## Content of the Repository
 This repository is a [Vue.js application](https://vuejs.org). It uses the material design framework [Vuetify](https://vuetifyjs.com/). The interface is provided in `src/components`
 
-The compiler of the input to state space queries is present in `src/compiler/compiler.js`.
+The compiler of the input to state space queries can be found in `src/compiler/compiler.js`.
 
-An examplary CPN can be found in ...
+An example can be found in the `example`-folder. It contains the fragments of an exemplary process (`example/fragments.png`) that describes the submission and reviewing of papers for a conference. The formalized CPN of this fCM can be found in `example/conference.cpn`
 
 ## Project setup
 The project can be used with the latest version of [npm](https://www.npmjs.com).
@@ -33,7 +33,7 @@ npm run serve
 The application should then be available at `http://localhost:8080`.
 
 ## Usage
-In the following, let us consider the following examplary fragments of an fCM:
+In the following, let us consider the following examplary fragments of an fCM (It is also provided in ´example/fragments.png´):
 
 <img width="400" alt="image" src="https://user-images.githubusercontent.com/32839252/110783487-cfd53c00-8268-11eb-828c-aa73ab66f773.png">
 
@@ -47,10 +47,10 @@ To create a new Objective, click `Create New`.
 
 <img width="400" alt="image" src="https://user-images.githubusercontent.com/32839252/110791450-85f15380-8272-11eb-9473-1e473c4248de.png">
 
-An Objective regards one execution state and can consist of desired Data Object states and enabled Tasks. The semantic for Data Objects and desired states is that for a chosen state at least one Data Object with that state should exist. All options connected with the logic AND.
+An Objective regards one execution state and can consist of desired Data Object states and enabled Tasks. The semantics for Data Objects and desired states is that for a chosen state at least one Data Object with that state should exist. All options are connected with the logic AND.
 
 For the desired input, the state space query is automatically compiled. It can be copied and used for the analysis in [CPN Tools](http://cpntools.org).
-The CPN-representation of the example can be found in `example/conference.cpn`.
+The CPN-representation of the example can be found in `example/conference.cpn`. To use it, run the latest version of CPN-Tools, which can be downloaded from [here](http://cpntools.org/category/downloads/).
 
 The state space query is an ASK-CTL formula. More information can be found [here](http://cpntools.org/wp-content/uploads/2018/01/askctlmanual.pdf).
 
@@ -70,11 +70,11 @@ Next, the the ASK-CTL compiler must be loaded. Choose the ML compiler in the sim
 
 Now, any ASK-CTL formula can be executed by choosing the ML compiler and clicking on it. To execute the state space query, copy it into a separate text field in the net. In the examplary CPN, the previously created state space query is already given.
 
-To execute the query from the current state on, choose the 'Sim to State Space' option of the state space tool. The current state node is displayed. Insert it into the state space query and execute it.
+To execute the query from the current state on, choose the 'Sim to State Space' option of the state space tool. The current state node will be returned. Insert it into the state space query and execute it.
 
 <img width="100" alt="image" src="https://user-images.githubusercontent.com/32839252/110791678-c6e96800-8272-11eb-8b86-919a5d1286d0.png">
 
-The query returns a boolean indicating whether or not an execution state can be reached that satisfies the objective. For all possible successor states, it can be investigated which can lead to a satisfying state and which can't.
+The query returns a boolean indicating whether or not an execution state can be reached that satisfies the objective. For all possible successor states, it can be investigated which can lead to a satisfying state and which can't. This information provides assistance to the Knowledge Worker, what tasks to execute.
 
 <img width="956" alt="image" src="https://user-images.githubusercontent.com/32839252/110791802-ec767180-8272-11eb-8426-01f5af7d431b.png">
 
