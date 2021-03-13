@@ -81,3 +81,6 @@ The query returns a boolean indicating whether or not an execution state can be 
 To inverstigate the state space and the successor states of the current state, the state space can be visualized by using the state space tool.
 
 <img width="100" alt="image" src="https://user-images.githubusercontent.com/32839252/110791660-bfc25a00-8272-11eb-97ff-29239c890b1e.png">
+
+### Note
+Due to ongoing changes in the [fcm2cpn compiler](https://github.com/bptlab/fcm2cpn/tree/master), the compiled state space queries might need manual adjustments regarding the naming of tasks and pages. The namings with whitespace should be changed to using underscores in the CPN. Also, tasks in the CPN might have trailing numbers like `..._0`. In such cases, the query has to be adjusted.
