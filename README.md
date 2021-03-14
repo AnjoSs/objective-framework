@@ -1,6 +1,6 @@
 # objective-framework
 
-During the execution of fragment-based Case Models (fMC), the Knowledge Worker (KW) needs assistance with making decisions. The Objective Frameworks offers support by providing the opportunity to define Objectives that should be met in the future of the execution. The fCM's state space can then be analyzed according to the Objective with a state space query. This query searches for execution states that satisfy the Objective. The path to such a state can serve as an assistance for making decisions.
+During the execution of fragment-based Case Models (fCM), the Knowledge Worker (KW) needs assistance with making decisions. The Objective Frameworks offers support by providing the opportunity to define Objectives that should be met in the future of the execution. The fCM's state space can then be analyzed according to the Objective with a state space query. This query searches for execution states that satisfy the Objective. The path to such a state can serve as assistance for making decisions.
 
 The Objective Framework allows the KW to formally define state space queries on a high-level abstraction. It provides an interface to compose Objectives according to Data Objects, their states and Tasks of the fCM. The Objective is then compiled into a state space query. More information can be found in the paper 'Late Goal Modelling for Fragment-Based Case Management'.
 
@@ -39,7 +39,7 @@ In the following, let us consider the following examplary fragments of an fCM (I
 
 To use the Objective Framework, run the project.
 
-It is now possible to insert Data Objects with thier states, and Tasks.
+It is now possible to insert Data Objects with their states, and Tasks.
 
 <img width="400" alt="image" src="https://user-images.githubusercontent.com/32839252/110783735-19be2200-8269-11eb-93f6-9e9a36c62d8e.png">
 
@@ -56,29 +56,29 @@ The state space query is an ASK-CTL formula. More information can be found [here
 
 <img width="1017" alt="image" src="https://user-images.githubusercontent.com/32839252/110791925-13cd3e80-8273-11eb-88ca-bd31b6987e25.png">
 
-To execute it, first the models state space must be generated. To do so, select the generate state space option in the state space tool and click into the net. Due to the size of the state space, this might take several minutes.
+To execute it, first, the models state space must be generated. To do so, select the generate state space option in the state space tool and click into the net. Due to the size of the state space, this might take several minutes.
 
 <img width="100" alt="image" src="https://user-images.githubusercontent.com/32839252/110791549-a4574f00-8272-11eb-85d3-052434bb50f3.png">
 
-Also, the strongly connected components graph has to be computed. Choose the option in the state space tool and click into the net.
+Also, the strongly connected components graph has to be computed. Choose the option in the state space tool and click on the net.
 
 <img width="100" alt="image" src="https://user-images.githubusercontent.com/32839252/110791587-ade0b700-8272-11eb-9e28-e3cd15c1f053.png">
 
-Next, the the ASK-CTL compiler must be loaded. Choose the ML compiler in the simulation tool and compile the expression `use (ogpath^"ASKCTL/ASKCTLloader.sml")` by clicking on it.
+Next, the ASK-CTL compiler must be loaded. Choose the ML compiler in the simulation tool and compile the expression `use (ogpath^"ASKCTL/ASKCTLloader.sml")` by clicking on it.
 
 <img width="200" alt="image" src="https://user-images.githubusercontent.com/32839252/110791704-cf41a300-8272-11eb-9fa5-9099d3dd19d7.png">
 
-Now, any ASK-CTL formula can be executed by choosing the ML compiler and clicking on it. To execute the state space query, copy it into a separate text field in the net. In the examplary CPN, the previously created state space query is already given.
+Now, any ASK-CTL formula can be executed by choosing the ML compiler and clicking on it. To execute the state space query, copy it into a separate text field in the net. In the exemplary CPN, the previously created state space query is already given.
 
-To execute the query from the current state on, choose the 'Sim to State Space' option of the state space tool. The current state node will be returned. Insert it into the state space query and execute it.
+To execute the query from the current state, choose the 'Sim to State Space' option of the state space tool. The current state node will be returned. Insert it into the state space query and execute it.
 
 <img width="100" alt="image" src="https://user-images.githubusercontent.com/32839252/110791678-c6e96800-8272-11eb-8b86-919a5d1286d0.png">
 
-The query returns a boolean indicating whether or not an execution state can be reached that satisfies the objective. For all possible successor states, it can be investigated which can lead to a satisfying state and which can't. This information provides assistance to the Knowledge Worker, what tasks to execute.
+The query returns a boolean indicating whether or not an execution state can be reached that satisfies the objective. For all possible successor states, it can be investigated which can lead to a satisfying state and which can't. This information assists Knowledge Worker, what tasks to execute.
 
 <img width="956" alt="image" src="https://user-images.githubusercontent.com/32839252/110791802-ec767180-8272-11eb-8426-01f5af7d431b.png">
 
-To inverstigate the state space and the successor states of the current state, the state space can be visualized by using the state space tool.
+To investigate the state space and the successor states of the current state, the state space can be visualized by using the state space tool.
 
 <img width="100" alt="image" src="https://user-images.githubusercontent.com/32839252/110791660-bfc25a00-8272-11eb-97ff-29239c890b1e.png">
 
