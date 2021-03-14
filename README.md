@@ -70,7 +70,7 @@ Next, the ASK-CTL compiler must be loaded. Choose the ML compiler in the simulat
 
 Now, any ASK-CTL formula can be executed by choosing the ML compiler and clicking on it. To execute the state space query, copy it into a separate text field in the net. In the exemplary CPN, the previously created state space query is already given.
 
-To execute the query from the current state, choose the 'Sim to State Space' option of the state space tool. The current state node will be returned. Insert it into the state space query and execute it.
+To execute the query from the current state, choose the 'Sim to State Space' option of the state space tool. The current state node will be returned in the execution status in the bottom left corner. Insert it into the state space query in the line `Objective <current state>` and execute it.
 
 <img width="100" alt="image" src="https://user-images.githubusercontent.com/32839252/110791678-c6e96800-8272-11eb-8b86-919a5d1286d0.png">
 
