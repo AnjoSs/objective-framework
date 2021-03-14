@@ -70,13 +70,13 @@ Next, the ASK-CTL compiler must be loaded. Choose the ML compiler in the simulat
 
 Now, any ASK-CTL formula can be executed by choosing the ML compiler and clicking on it. To execute the state space query, copy it into a separate text field in the net. In the exemplary CPN, the previously created state space query is already given.
 
-To execute the query from the current state, choose the 'Sim to State Space' option of the state space tool. The current state node will be returned in the execution status in the bottom left corner. Insert it into the state space query in the line `Objective <current state>` and execute it.
+To execute the query from the current state, choose the 'Sim to State Space' option of the state space tool. The current state node will be returned in the execution status in the bottom left corner. Insert it into the state space query in the line `eval_node Objective <current state>;` and execute it.
 
 <img width="100" alt="image" src="https://user-images.githubusercontent.com/32839252/110791678-c6e96800-8272-11eb-8b86-919a5d1286d0.png">
 
-The query returns a boolean indicating whether or not an execution state can be reached that satisfies the objective. For all possible successor states, it can be investigated which can lead to a satisfying state and which can't. This information assists Knowledge Worker, what tasks to execute.
-
 <img width="956" alt="image" src="https://user-images.githubusercontent.com/32839252/110791802-ec767180-8272-11eb-8426-01f5af7d431b.png">
+
+The query returns a boolean indicating whether or not an execution state can be reached that satisfies the objective. For all possible successor states, it can be investigated which can lead to a satisfying state and which can't. This information assists Knowledge Worker, what tasks to execute.
 
 To investigate the state space and the successor states of the current state, the state space can be visualized by using the state space tool.
 
